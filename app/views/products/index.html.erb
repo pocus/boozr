@@ -1,6 +1,8 @@
 <h1>Liquor Control Board of Ontario</h1>
 <h2>"It's for your own good."</h2>
 
+
+<section>
 <table>
 	<thead>
 		<tr>
@@ -11,15 +13,17 @@
 	<tbody>
 
 <% @products['result'].each do |p| %>
-  <section>
+
 	<tr>
     <td><%= link_to p['name'], product_path(p['id']) %></td>
     <td><%= p['primary_category'] %></td>
   </tr>
-  </section>
+
 	<% end %>
 	</tbody>
 </table>
+</section>
+
 
 <p><%= link_to "next >>", products_path(:yip => @products['pager']['next_page']) %></p>
 <p><%= link_to "<< prev", products_path(:yip => @products['pager']['previous_page']) %></p>

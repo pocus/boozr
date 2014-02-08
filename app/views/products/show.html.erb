@@ -6,14 +6,21 @@
 	<thead>
 		<tr>
 			<td><h2>Store</h2></td>
+			<td><h2>City</h2></td>
 			<td><h2>Quantity</h2></td>
+
 		</tr>
 	</thead>
 	<tbody>
-<% @product_inventory['result'].each do |r| %>
+	<% @product_inventory['result'].each do |r| %>
+
+
+
 <tr>
 	<td><%= r['name'] %></td>
+	<td><%= r['city'] %></td>
 	<td><%= r['quantity'] %></td>
+
 </tr>
 <% end %>
 </tbody>

@@ -1,0 +1,11 @@
+<h1>Store</h1>
+
+<ul>
+
+<li><%= @store['result']['name']%>
+<li><%= @store['result']['city']%>
+<li>Elevation <%= @store_elev['results'][0]['elevation'].ceil %> metres (Google)</li>
+
+</ul>
+
+<%= link_to "back", stores_path %>

@@ -1,0 +1,28 @@
+<h1>Stores#index</h1>
+
+<section>
+<table>
+	<thead>
+		<tr>
+			<td><h3>Store</h3></td>
+			<td><h3>City</h3></td>
+		</tr>
+	</thead>
+	<tbody>
+
+<% @stores['result'].each do |s| %>
+	<tr>
+
+    <td><%= link_to s['name'], store_path(s['id']) %></td>
+    <td><%= s['city'] %>
+  </tr>
+	<% end %>
+	</tbody>
+</table>
+</section>
+
+
+
+<p><%= link_to "next >>", stores_path(:dip => @stores['pager']['next_page']) %></p>
+<p><%= link_to "<< prev", stores_path(:dip => @stores['pager']['previous_page']) %></p>
+<p><%= @stores['pager']['current_page']%></p>

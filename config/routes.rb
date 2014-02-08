@@ -1,4 +1,5 @@
 Boozr::Application.routes.draw do
+  resources :stores, :only => [:index,:show]
   # get "products/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
