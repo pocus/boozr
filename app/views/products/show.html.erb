@@ -1,2 +1,21 @@
-<p><%= @product['result']['name'] %></p>
-<%= image_tag(@product['result']['image_thumb_url']) %>
+<h1><%= @product['result']['name'] %></h1>
+<p><%= image_tag(@product['result']['image_thumb_url']) %></p>
+
+<h1>Stock for this product</h1>
+<table>
+	<thead>
+		<tr>
+			<td><h2>Store</h2></td>
+			<td><h2>Quantity</h2></td>
+		</tr>
+	</thead>
+	<tbody>
+<% @product_inventory['result'].each do |r| %>
+<tr>
+	<td><%= r['name'] %></td>
+	<td><%= r['quantity'] %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<p><%= link_to "back", products_path %></p>

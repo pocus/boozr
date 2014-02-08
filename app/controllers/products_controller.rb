@@ -11,6 +11,10 @@ class ProductsController < ApplicationController
   	id = params[:id]
   	product_json = open("http://lcboapi.com/products/#{id}").read
   	@product = JSON.parse(product_json)
+
+    product_inventory_json = open("http://lcboapi.com/products/#{id}/stores").read
+    @product_inventory = JSON.parse(product_inventory_json)
+
   end
 
 end
