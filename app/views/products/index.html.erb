@@ -1,6 +1,12 @@
 <h1>Liquor Control Board of Ontario</h1>
 <h2>"It's for your own good."</h2>
 
+<p>
+	<%= form_tag products_path, :method => 'get' do %>
+	<%= text_field_tag :search %>
+	<%= submit_tag :search %>
+	<% end %>
+</p>
 
 <section>
 <table>
@@ -12,19 +18,24 @@
 	</thead>
 	<tbody>
 
-<% @products['result'].each do |p| %>
+<% if @products['pager']['total_record_count'] == 0  %>
+	No results found for search term "<%= params[:search]  %>"
+<% else %>
+	<% @products['result'].each do |p| %>
+		<tr>
+	    <td><%= link_to p['name'], product_path(p['id']) %></td>
+	    <td><%= p['primary_category'] %></td>
+	  </tr>
+		<% end %>
+<% end %>
 
-	<tr>
-    <td><%= link_to p['name'], product_path(p['id']) %></td>
-    <td><%= p['primary_category'] %></td>
-  </tr>
-
-	<% end %>
 	</tbody>
 </table>
 </section>
 
+<% if @products['pager']['next_page_path'] %>
+	<p><%= link_to "next >>", products_path(:yip => @products['pager']['next_page_path']) %></p>
+	<p><%= link_to "<< prev", products_path(:yip => @products['pager']['previous_page_path']) %></p>
+<% end %>
 
-<p><%= link_to "next >>", products_path(:yip => @products['pager']['next_page']) %></p>
-<p><%= link_to "<< prev", products_path(:yip => @products['pager']['previous_page']) %></p>
 <p><%= @products['pager']['current_page']%></p>

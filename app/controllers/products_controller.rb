@@ -2,9 +2,18 @@ require 'open-uri'
 
 class ProductsController < ApplicationController
   def index
-  	page = params[:yip] || 1
-  	products_json = open("http://lcboapi.com/products?page=#{page}").read
-  	@products = JSON.parse(products_json) #@products is a hash
+  	page = params[:yip] || "/products?page=1"
+
+    if params[:search]
+      products_json = open("http://lcboapi.com/#{page}&q=#{params[:search]}").read
+    else
+      products_json = open("http://lcboapi.com/#{page}").read
+    end
+
+    @products = JSON.parse(products_json)
+
+
+
   end
 
   def show
